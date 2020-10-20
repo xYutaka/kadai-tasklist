@@ -11,12 +11,19 @@ class TasksController extends Controller
     // getでTask/にアクセスされた場合の「一覧表示処理」
     public function index()
     {
-        // タスク一覧を取得
-        $tasks = Task::all();
-         // タスク一覧ビューでそれを表示
-        return view('tasks.index', [
-            'tasks' => $tasks,
-        ]);
+        // ここで認証状態によって分岐する コントローラーにかく
+        if (\Auth::check()) {
+            // 認証済みの場合はここ
+            // タスク一覧を取得
+            $tasks = Task::all();
+             // タスク一覧ビューでそれを表示
+            return view('tasks.index', [
+                'tasks' => $tasks,
+            ]);
+        } else {
+            // 認証済みでない場合はここ
+            return view('welcome');
+        }
     }
 
        // getでtasks/createにアクセスされた場合の「新規登録画面表示処理」
