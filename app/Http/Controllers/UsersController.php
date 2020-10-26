@@ -11,11 +11,21 @@ class UsersController extends Controller
     public function index()
     {
         // ユーザ一覧をidの降順で取得
-        $users = User::orderBy('id', 'desc')->paginate(10);
+        $tasks = Task::orderBy('id', 'desc')->paginate(1);
 
         // ユーザ一覧ビューでそれを表示
-        return view('users.index', [
-            'users' => $users,
+        return view('tasks.index', [
+            'tasks' => $tasks,
+        ]);
+    }
+     public function show($id)
+    {
+        // idの値でユーザを検索して取得
+        $user = User::findOrFail($id);
+
+        // ユーザ詳細ビューでそれを表示
+        return view('tasks.show', [
+            'task' => $task,
         ]);
     }
 }

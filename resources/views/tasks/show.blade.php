@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <h1>id = {{ $task->id }} のタスク詳細ページ</h1>
+<div class="row">
+        <aside class="col-sm-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">{{ $task->name }}</h3>
+                </div>
 
     <table class="table table-bordered">
         <tr>
